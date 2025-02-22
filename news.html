@@ -20,13 +20,14 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            transition:background-color 0.5s ease-in-out;
         }
         .news-item {
             background: #cec6c6;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            transition: transform 0.3s ;
         }
         
         
@@ -40,6 +41,48 @@
             text-decoration: none;
             color: #3498db;
             font-weight: bold;
+        }
+        #register-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        #register-modal:target {
+            display: block;
+        }
+        .modal-content {
+            background: white;
+            width: 50%;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .close-btn {
+            display: block;
+            text-align: right;
+            font-size: 20px;
+            text-decoration: none;
+            color: black;
+        }
+        input, textarea {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
         
         
@@ -99,6 +142,25 @@
         </div>
 
     </div>
+    <div>
+        <a href="#register-modal" class="register-btn">Register News</a>
+    </div>
+
+
+    <div id="register-modal">
+        <div class="modal-content">
+            <a href="#" class="close-btn">&times;</a>
+            <h2>Register a News Article</h2>
+            <form>
+                <input type="text" placeholder="News Title" required><br>
+                <textarea placeholder="News Description" rows="4" required></textarea><br>
+                <input type="text" placeholder="Source (e.g., Website, Reporter)" required><br>
+                <a href="#" class="submit-btn">Register</a>
+
+            </form>
+        </div>
+    </div>
+
 
 </body>
 </html>
