@@ -76,6 +76,12 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 20px 0;
+        }
         .submit-btn {
             background-color: #3498db;
             color: white;
@@ -87,6 +93,25 @@
         
         
     </style>
+    <script>
+
+        function addNews(event) {
+            event.preventDefault();
+            var title = document.getElementById("news-title").value;
+            var description = document.getElementById("news-description").value;
+            var source = document.getElementById("news-source").value;
+            if (title && description && source) {
+                var newsContainer = document.getElementById("news-container");
+                var newsItem = document.createElement("div");
+                newsItem.classList.add("news-item");
+                newsItem.innerHTML = `<h3>${title}</h3><p>${description}</p><small>Source: ${source}</small>`;
+                newsContainer.prepend(newsItem);
+                document.getElementById("news-form").reset();
+            } else {
+                alert("Please fill out all fields.");
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Latest News</h1>
@@ -143,24 +168,21 @@
 
     </div>
     <div>
-        <a href="#register-modal" class="register-btn">Register News</a>
-    </div>
-
-
-    <div id="register-modal">
-        <div class="modal-content">
-            <a href="#" class="close-btn">&times;</a>
-            <h2>Register a News Article</h2>
-            <form>
-                <input type="text" placeholder="News Title" required><br>
-                <textarea placeholder="News Description" rows="4" required></textarea><br>
-                <input type="text" placeholder="Source (e.g., Website, Reporter)" required><br>
-                <a href="#" class="submit-btn">Register</a>
-
-            </form>
+        <div id="news-container" class="news-container"></div>
+        <footer>
+            <a href="#register-modal" class="register-btn">Register News</a>
+        </footer>
+        <div id="register-modal">
+            <div class="modal-content">
+                <a href="#" class="close-btn">&times;</a>
+                <h2>Register a News Article</h2>
+                <form id="news-form" onsubmit="addNews(event)">
+                    <input type="text" id="news-title" placeholder="News Title" required><br>
+                    <textarea id="news-description" placeholder="News Description" rows="4" required></textarea><br>
+                    <input type="text" id="news-source" placeholder="Source (e.g., Website, Reporter)" required><br>
+                    <button type="submit" class="submit-btn" onclick="window.location.href='#';">Register</button>
+                </form>
+            </div>
         </div>
-    </div>
-
-
 </body>
 </html>
