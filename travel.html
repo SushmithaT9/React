@@ -97,6 +97,23 @@
                 event.preventDefault();
             }
         }
+        function formatEmail() {
+           let emailInput = document.getElementById("email");
+           let emailValue = emailInput.value.toLowerCase();
+    
+
+           let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+               if (!emailPattern.test(emailValue)) {
+                  alert("Please enter a valid email address.");
+                  emailInput.value = ""; // Clear the invalid email
+                  emailInput.focus(); // Bring back focus to the input field
+                } else {
+                        emailInput.value = emailValue; // Save formatted email
+                      }
+            }
+
+
     </script>
 </head>
 <body>
@@ -165,7 +182,8 @@
             <h2>Register for a Trip</h2>
             <form onsubmit="validateForm(event)">
                 <input type="text" placeholder="Full Name" required><br>
-                <input type="email" placeholder="Email" required><br>
+                <input type="email" id="email" placeholder="Email" required onblur="formatEmail()"><br>
+
                 <input type="tel" placeholder="Phone Number" required><br>
                 <select required>
                     <option value="">Select Destination</option>
